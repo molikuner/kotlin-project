@@ -3,7 +3,7 @@ buildscript {
     ext.coroutines_version = "1.1.1"
     ext.dokka_version = "0.9.18"
     ext.junit_version = "4.12"
-    ext.mockito_version = "2.25.1"
+    ext.mockito_version = "2.26.0"
     repositories {
         jcenter()
         maven {

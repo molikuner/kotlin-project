@@ -1,0 +1,45 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  image: openjdk:jdk-slim
+  commands:
+  - ./gradlew build
+
+- name: test
+  image: openjdk:jdk-slim
+  commands:
+  - ./gradlew check
+
+- name: publish
+  image: openjdk:jdk-slim
+  commands:
+  - ./gradlew publish
+  when:
+    branch:
+    - master
+    - dev,develop
+    - hotfix*
+
+- name: upload
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: GITHUB_TOKEN
+    files: build/repository/**/*.*.*/*
+  when:
+    branch:
+    - master
+    - dev,develop
+    - hotfix*
+    event:
+    - tag
+
+...

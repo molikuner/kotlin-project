@@ -1,10 +1,11 @@
 package demo 
 
-import kotlin.test.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
+import com.molikuner.getGreeting
 
 class TestSource {
     @Test fun f() {
-        assertEquals("Hello, world!", getGreeting())
+        assertEquals("kotlin-project-https://github.com/molikuner/kotlin-project", getGreeting())
     }
 }
